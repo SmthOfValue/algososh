@@ -18,6 +18,8 @@ export const StringComponent: React.FC = () => {
 
   const [characters, setCharacters] = useState<TCharState>([]);
   const [circles, setCircles] = useState<JSX.Element[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCharacters(e.target.value.split('').map((item) => {
@@ -46,6 +48,8 @@ export const StringComponent: React.FC = () => {
   const setTimer = (ms: number) => new Promise(res => setTimeout(res, ms))
 
   const reverseWord = () => {
+    setIsLoading(true);
+    console.log(isLoading);
     updateCircles();
     const array = characters;
     const length = array.length;
@@ -72,6 +76,7 @@ export const StringComponent: React.FC = () => {
         }, 1000);
         await setTimer (1000);
       } 
+      setTimeout(function() {setIsLoading(false);}, 1000)      
     }
 
     loop(); 
@@ -88,7 +93,7 @@ export const StringComponent: React.FC = () => {
           extraClass={stringStyles.input} 
           onChange={e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
         />
-        <Button text='Развернуть' onClick={reverseWord}/>
+        <Button text='Развернуть' onClick={reverseWord} isLoader={isLoading} />
      </form>
      <ul className={stringStyles.list}>
       {circles}
