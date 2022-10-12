@@ -34,7 +34,7 @@ export const StringComponent: React.FC = () => {
   const updateCircles = () => {
     setCircles(characters.map((char, index) => {
       return (
-        <li key={index} className={stringStyles.item}>
+        <li key={index} >
         <Circle 
           letter = {char.char}
           state = {char.state}
@@ -49,7 +49,6 @@ export const StringComponent: React.FC = () => {
 
   const reverseWord = () => {
     setIsLoading(true);
-    console.log(isLoading);
     updateCircles();
     const array = characters;
     const length = array.length;
@@ -74,7 +73,7 @@ export const StringComponent: React.FC = () => {
             updateCircles();
           }, 1000)
         }, 1000);
-        await setTimer (1000);
+        await setTimer(1000);
       } 
       setTimeout(function() {setIsLoading(false);}, 1000)      
     }
