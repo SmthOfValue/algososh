@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
@@ -20,16 +20,19 @@ export const FibonacciPage: React.FC = () => {
 
 
   const calculateFibonacciNumbers = () => { 
+    const delay = 500*(number+1);
     setIsLoading(true);
     const array: number[] = [];
     const n = number; 
-    array.push(0);
+    array.push(1);
     array.push(1);
     for (let i = 2; i < n + 1; i++) {
       array.push(array[i - 2] + array[i - 1])       
     }
     setNumbers(array);
-    setTimeout(function() {setIsLoading(false);}, 500*(number+1)) 
+    setTimeout(function() {
+      setIsLoading(false);
+    }, delay) 
   }
 
 
