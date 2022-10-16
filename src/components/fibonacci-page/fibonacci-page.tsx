@@ -4,7 +4,7 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import fibonacciStyles from './fibonacci-page.module.css';
-import { DelayedComponent } from "../DelayedComponent/delayed-component";
+import { DelayedComponent } from "../delayed-component/delayed-component";
 
 export const FibonacciPage: React.FC = () => {
 
