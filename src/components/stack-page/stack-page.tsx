@@ -119,10 +119,10 @@ export const StackPage: React.FC = () => {
         return (
           <li className={stackStyles.item} key={index}>
             <Circle 
-            letter = {element.value}
-            index = {index}
-            head = {index === stack.getSize() - 1 ? 'top' : null}
-            state = {element.state}
+              letter = {element.value}
+              index = {index}
+              head = {index === stack.getSize() - 1 ? 'top' : null}
+              state = {element.state}
             />
           </li>
         )
