@@ -11,13 +11,11 @@ export const FibonacciPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [number, setNumber] = useState<number>(0);
   const [numbers, setNumbers] = useState<Array<number>>([]);
-
   
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNumbers([]);
     setNumber(Number(e.target.value));
   }
-
 
   const calculateFibonacciNumbers = () => { 
     const delay = 500*(number+1);
@@ -34,8 +32,6 @@ export const FibonacciPage: React.FC = () => {
       setIsLoading(false);
     }, delay) 
   }
-
-
 
   return (
     <SolutionLayout title="Последовательность Фибоначчи">

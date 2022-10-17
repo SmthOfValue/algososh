@@ -7,33 +7,13 @@ import { Direction } from "../../types/direction";
 import { Column } from "../ui/column/column";
 import {ElementStates} from '../../types/element-states';
 import {setTimer} from '../../utils/utils';
+import { swap, TColumnsState, TSortingInProgress, randomArr } from "./utils";
 
-type TColumnObj = 
-  {
-    number: number;
-    state: ElementStates;
-  };
-
-type TColumnsState = Array<TColumnObj>
-
-type TSortingInProgress = {
-  ascending: boolean;
-  descending: boolean;
-}
 
 export const SortingPage: React.FC = () => {
 
   const SORT_SELECTION = 'SORT_SELECTION';
-  const SORT_BUBBLE = 'SORT_BUBBLE';
-
-  const randomArr = (minLen = 3, maxLen = 17) => {
-    const limit = Math.floor(Math.random() * (maxLen + 1 - minLen)) + minLen;
-    const randomArr = [];
-    for (let i = 0; i < limit; i++) {
-      randomArr.push(Math.floor(Math.random()*101));
-    }
-    return randomArr;
-  }
+  const SORT_BUBBLE = 'SORT_BUBBLE';  
   
   const [sortingType, setSortingType] = useState(SORT_SELECTION);
   const [columns, setColumns] = useState<TColumnsState>([]);
@@ -41,12 +21,6 @@ export const SortingPage: React.FC = () => {
     ascending: false,
     descending: false}
   );
-
-  const swap = (arr: TColumnsState, firstIndex: number, secondIndex: number): void => {
-    const temp = arr[firstIndex];
-    arr[firstIndex] = arr[secondIndex];
-    arr[secondIndex] = temp;
-  };
 
   const handleNewArrayCreation = () => {
     const array = randomArr();

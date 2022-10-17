@@ -4,11 +4,9 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import queueStyles from './queue-page.module.css';
-import { Queue } from "../queue/queue";
+import { Queue } from "./queue";
 import { ElementStates } from "../../types/element-states";
 import { setTimer } from '../../utils/utils';
-import { start } from "repl";
-import { render } from "@testing-library/react";
 
 type TElementObj = 
   {
