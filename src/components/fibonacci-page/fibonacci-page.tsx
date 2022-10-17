@@ -12,9 +12,10 @@ export const FibonacciPage: React.FC = () => {
   const [number, setNumber] = useState<number>(0);
   const [numbers, setNumbers] = useState<Array<number>>([]);
   
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setNumbers([]);
-    setNumber(Number(e.target.value));
+    setNumber(Number(e.currentTarget.value));
   }
 
   const calculateFibonacciNumbers = () => { 
@@ -44,9 +45,13 @@ export const FibonacciPage: React.FC = () => {
           isLimitText
           placeholder = "Введите число"
           extraClass={fibonacciStyles.input} 
-          onChange={e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
+          onChange={e => onInputChange(e)}
+          value={number}
         />
-        <Button text='Рассчитать' isLoader={isLoading} onClick={calculateFibonacciNumbers}/>
+        <Button 
+          text='Рассчитать' 
+          isLoader={isLoading} onClick={calculateFibonacciNumbers}
+          disabled = {number === 0 || number > 19}/>
      </form>
      <ul className={fibonacciStyles.list}>
       {numbers.map((num, index) => {
