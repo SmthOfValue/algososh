@@ -20,10 +20,15 @@ export const StringComponent: React.FC = () => {
   const [characters, setCharacters] = useState<TCharState>([]);
   const [circles, setCircles] = useState<JSX.Element[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [input, setInput] = useState<string>('');
   
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCharacters(e.target.value.split('').map((item) => {
+  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setInput(e.currentTarget.value);
+    setCharacters(e.currentTarget.value.split('').map((item) => {
       return {
         char: item,
         state: ElementStates.Default
@@ -80,14 +85,19 @@ export const StringComponent: React.FC = () => {
   
   return (
     <SolutionLayout title="Строка" >
-      <form className={stringStyles.wrapper}>
+      <form className={stringStyles.wrapper} onSubmit={e => {onFormSubmit(e)}}>
         <Input 
           maxLength={11}
           isLimitText
           extraClass={stringStyles.input} 
-          onChange={e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
+          onChange={e => {onInputChange(e)}}
+          value={input}
         />
-        <Button text='Развернуть' onClick={reverseWord} isLoader={isLoading} />
+        <Button 
+          text='Развернуть' 
+          onClick={reverseWord} 
+          isLoader={isLoading}
+          disabled={input === ''} />
      </form>
      <ul className={stringStyles.list}>
       {circles}

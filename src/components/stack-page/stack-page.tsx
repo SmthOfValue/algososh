@@ -30,8 +30,13 @@ export const StackPage: React.FC = () => {
     remove: false
   });
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }
+
+  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInput(e.currentTarget.value);
   }
 
   const handleAddClick = async () => {
@@ -84,13 +89,13 @@ export const StackPage: React.FC = () => {
 
   return (
     <SolutionLayout title="Стек">
-      <form className={stackStyles.wrapper}>
+      <form className={stackStyles.wrapper} onSubmit={e => {onFormSubmit(e)}}>
         <Input 
           maxLength = {4}
           isLimitText
           placeholder = "Введите текст"
           extraClass = {stackStyles.input}
-          onChange = {e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
+          onChange = {e => onInputChange(e)}
           value = {input}
         />
         <Button 

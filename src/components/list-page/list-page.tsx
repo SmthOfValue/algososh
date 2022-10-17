@@ -42,6 +42,7 @@ export const ListPage: React.FC = () => {
 
   const startingList = new LinkedList<string>(randomStringArr());
   const [list, setList] = useState<LinkedList<string>>(startingList);
+  
 
   const convertToRenderData = (array: Array<string>): Array<TElementObj> => {
     return array.map((element, index) => {
@@ -81,12 +82,18 @@ export const ListPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [inputIndex, setInputIndex] = useState('');
 
-  const onInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const onInputValueChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInputValue(e.currentTarget.value);
   }
 
-  const onInputIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputIndex(e.target.value);
+  const onInputIndexChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInputIndex(e.currentTarget.value);
+  }
+
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   }
 
   //функция добавления маленького круга
@@ -433,14 +440,14 @@ export const ListPage: React.FC = () => {
 
   return (
     <SolutionLayout title="Связный список">
-      <form className={listStyles.wrapper}>
+      <form className={listStyles.wrapper} onSubmit={e => {onFormSubmit(e)}}>
         <div className={listStyles.row}>
           <Input 
             maxLength = {4}
             isLimitText
             placeholder = "Введите значение"
             extraClass = {listStyles.input}
-            onChange = {e => onInputValueChange(e as React.ChangeEvent<HTMLInputElement>)}
+            onChange = {e => onInputValueChange(e)}
             value = {inputValue}
           />
           <Button 
@@ -480,21 +487,32 @@ export const ListPage: React.FC = () => {
             type = 'number'
             placeholder = "Введите индекс"
             extraClass = {listStyles.input}
-            onChange = {e => onInputIndexChange(e as React.ChangeEvent<HTMLInputElement>)}
+            onChange = {e => onInputIndexChange(e)}
             value = {inputIndex}
           />
           <Button 
             text='Добавить по индексу'
             extraClass = {listStyles.buttonIndex}
             onClick = {handleAddByIndex}
-            disabled = {inputValue === '' || inputIndex === '' || loadingInProgress.disabled}
+            disabled = {
+              inputValue === ''
+              || inputIndex === ''
+              || loadingInProgress.disabled 
+              || parseInt(inputIndex) < 0 
+              || parseInt(inputIndex) > list.getSize() - 1
+            }
             isLoader = {loadingInProgress.addByIndex}
           />
           <Button 
             text='Удалить по индексу'
             extraClass = {listStyles.buttonIndex}
             onClick = {handleRemoveByIndex}            
-            disabled = {inputIndex === '' || loadingInProgress.disabled}  
+            disabled = {
+              inputIndex === '' 
+              || loadingInProgress.disabled
+              || parseInt(inputIndex) < 0 
+              || parseInt(inputIndex) > list.getSize() - 1
+            }  
             isLoader = {loadingInProgress.removeByIndex}        
           />
         </div>

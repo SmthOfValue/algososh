@@ -30,8 +30,13 @@ export const QueuePage: React.FC = () => {
     remove: false
   });
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }
+
+  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInput(e.currentTarget.value);
   }
 
   const handleAddClick = async () => {
@@ -104,13 +109,13 @@ export const QueuePage: React.FC = () => {
 
   return (
     <SolutionLayout title="Очередь">
-      <form className={queueStyles.wrapper}>
+      <form className={queueStyles.wrapper} onSubmit={e => {onFormSubmit(e)}}>
         <Input 
           maxLength = {4}
           isLimitText
           placeholder = "Введите текст"
           extraClass = {queueStyles.input}
-          onChange = {e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
+          onChange = {e => onInputChange(e)}
           value = {input}
         />
         <Button 

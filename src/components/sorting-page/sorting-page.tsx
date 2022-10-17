@@ -37,8 +37,8 @@ export const SortingPage: React.FC = () => {
     handleNewArrayCreation()
   }, []);
 
-  const handleSortTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSortingType(e.target.value);
+  const handleSortTypeChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setSortingType(e.currentTarget.value);
   }
 
   const sortSelection = async (ascending: boolean) => {
@@ -143,7 +143,7 @@ export const SortingPage: React.FC = () => {
           value = {SORT_SELECTION}
           name = 'sort-type'
           checked = {sortingType === SORT_SELECTION}
-          onChange = {e => handleSortTypeChange(e as React.ChangeEvent<HTMLInputElement>)}
+          onChange = {e => handleSortTypeChange(e)}
           disabled = {sortingInProgress.ascending || sortingInProgress.descending}
         />
         <RadioInput 
@@ -152,7 +152,7 @@ export const SortingPage: React.FC = () => {
           value = {SORT_BUBBLE}
           name = 'sort-type'
           checked = {sortingType === SORT_BUBBLE}
-          onChange = {e => handleSortTypeChange(e as React.ChangeEvent<HTMLInputElement>)}
+          onChange = {e => handleSortTypeChange(e)}
           disabled = {sortingInProgress.ascending || sortingInProgress.descending}
         />
         <Button 
