@@ -29,7 +29,6 @@ export class Queue<T> implements IQueue<T> {
         if (!this.isEmpty()) { 
             this.tail = (this.tail + 1)% this.size;
         }
-        console.log('head: ', this.head, 'tail: ', this.tail);
         this.container[this.tail % this.size] = item;
         this.length = this.length + 1;   
         
@@ -47,7 +46,6 @@ export class Queue<T> implements IQueue<T> {
             this.head = 0;
             this.tail = 0;
         }
-        console.log('head: ', this.head, 'tail: ', this.tail);
     };
   
     peek = (): T | null => {

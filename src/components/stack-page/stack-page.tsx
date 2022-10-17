@@ -4,7 +4,7 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import stackStyles from './stack-page.module.css';
-import { Stack } from "../stack/stack";
+import { Stack } from "./stack";
 import { ElementStates } from "../../types/element-states";
 import { setTimer } from '../../utils/utils';
 
