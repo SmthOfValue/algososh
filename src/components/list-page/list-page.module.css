@@ -1,0 +1,48 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.input {
+    max-width: 204px;
+}
+
+.button {
+    width: 175px;
+}
+
+.buttonIndex {
+    width: 362px;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 120px auto 0;
+    max-width: 1200px
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 144px;
+}
+
+.circle {
+    margin-right: 16px;
+}
