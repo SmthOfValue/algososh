@@ -145,7 +145,7 @@ export const QueuePage: React.FC = () => {
               <Circle 
                 letter = {element ? element.value : ''}
                 index = {index}
-                head = {queue.getHead() === index ? 'top' : null}
+                head = {queue.getHead() === index ? 'head' : null}
                 tail = {queue.getTail() === index  ? 'tail' : null}
                 state = {element ? element.state : ElementStates.Default}
               />

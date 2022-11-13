@@ -100,39 +100,7 @@ export const StringComponent: React.FC = () => {
     setIsLoading(false);
   }
 
-  // //асинхронная функция, чтобы можно было использовать await для setTimer
-  // const reverseWord = async () => {
-  //   setIsLoading(true);
-  //   updateCircles();
-  //   const array = characters;
-  //   const length = array.length;
-  //   const wordCenter = length%2 === 0 ? Math.floor(length / 2) - 1: Math.floor(length / 2);
-  //   let temp: TCharObj;    
-  //   for (let i = 0; i <= wordCenter; i++) {
-  //     setTimeout(function() {
-  //       array[i].state = ElementStates.Changing;
-  //       array[length - i - 1].state = ElementStates.Changing;
-  //       setCharacters(array);
-  //       updateCircles();
-  //       setTimeout(function() {
-  //         temp = array[length - i - 1];
-  //         array[length - i - 1] = array[i];
-  //         array[i] = temp;
-  //         array[i].state = ElementStates.Modified;
-  //         array[length - i - 1].state = ElementStates.Modified;
-  //         setCharacters(array);
-  //         updateCircles();
-  //       }, 1000)
-  //     }, 1000);
-  //     await setTimer(1000);
-  //   } 
-  //   setTimeout(function() {
-  //     setIsLoading(false);
-  //   }, 1000)       
-  // }
-
-  
-  
+ 
   return (
     <SolutionLayout title="Строка" >
       <form className={stringStyles.wrapper}>
@@ -142,7 +110,12 @@ export const StringComponent: React.FC = () => {
           extraClass={stringStyles.input} 
           onChange={e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
         />
-        <Button text='Развернуть' onClick={renderReverseSteps} isLoader={isLoading} />
+        <Button 
+          text='Развернуть'
+          onClick={renderReverseSteps}
+          isLoader={isLoading}
+          disabled = {word === ''}
+        />
      </form>
      <ul className={stringStyles.list}>
       {circles}

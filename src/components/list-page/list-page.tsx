@@ -1,10 +1,10 @@
-import React, { useEffect, useState }from "react";
+import React, { useState }from "react";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import listStyles from './list-page.module.css';
-import { LinkedList, LinkedListNode } from "./linked-list";
+import { LinkedList } from "./linked-list";
 import { ElementStates } from "../../types/element-states";
 import { setTimer, randomStringArr } from '../../utils/utils';
 import {ArrowIcon} from '../ui/icons/arrow-icon';
@@ -40,7 +40,7 @@ export const ListPage: React.FC = () => {
     disabled: false
   });
 
-  const startingList = new LinkedList<string>(randomStringArr());
+  const startingList = new LinkedList<string>(['0', '34', '8', '1']);
   const [list, setList] = useState<LinkedList<string>>(startingList);
 
   const convertToRenderData = (array: Array<string>): Array<TElementObj> => {

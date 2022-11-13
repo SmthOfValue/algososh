@@ -46,7 +46,11 @@ export const FibonacciPage: React.FC = () => {
           extraClass={fibonacciStyles.input} 
           onChange={e => onInputChange(e as React.ChangeEvent<HTMLInputElement>)}
         />
-        <Button text='Рассчитать' isLoader={isLoading} onClick={calculateFibonacciNumbers}/>
+        <Button 
+          text='Рассчитать'
+          isLoader={isLoading}
+          onClick={calculateFibonacciNumbers}
+          disabled={number === 0}/>
      </form>
      <ul className={fibonacciStyles.list}>
       {numbers.map((num, index) => {
