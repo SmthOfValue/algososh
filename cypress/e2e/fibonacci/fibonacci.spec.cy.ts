@@ -1,6 +1,8 @@
+import {CIRCLE_LETTER_SELECTOR} from '../../support/constants'
+
 describe('Кнопка "Рассчитать"', function() {
     before(function() {
-        cy.visit('http://localhost:3000/fibonacci');
+        cy.visit('fibonacci');
     });
 
     it('Кнопка недоступна при пустом поле ввода', function() {
@@ -12,7 +14,7 @@ describe('Кнопка "Рассчитать"', function() {
 
 describe('Генерация чисел', function() {
     before(function() {
-        cy.visit('http://localhost:3000/fibonacci');
+        cy.visit('fibonacci');
     });
 
     it('Числа генерируются корректно', function() {
@@ -21,10 +23,10 @@ describe('Генерация чисел', function() {
 
         cy.wait(5000)
 
-        cy.get('p[class*="circle_letter"]').eq(0).should('have.text', '1');
-        cy.get('p[class*="circle_letter"]').eq(1).should('have.text', '1');
-        cy.get('p[class*="circle_letter"]').eq(2).should('have.text', '2');
-        cy.get('p[class*="circle_letter"]').eq(3).should('have.text', '3');
-        cy.get('p[class*="circle_letter"]').eq(4).should('have.text', '5');        
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(0).should('have.text', '1');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(1).should('have.text', '1');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(2).should('have.text', '2');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(3).should('have.text', '3');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(4).should('have.text', '5');        
     });
 }); 

@@ -1,8 +1,7 @@
-import { after } from "cypress/types/lodash";
 
 describe('Роутинг', function() {
     before(function() {
-      cy.visit('http://localhost:3000');
+      cy.visit('');
     });
 
     this.afterEach(function() {
@@ -46,4 +45,3 @@ describe('Роутинг', function() {
     });
 
   }); 
-

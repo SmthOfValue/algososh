@@ -1,6 +1,8 @@
+import {CIRCLE_CIRCLE_SELECTOR, CIRCLE_LETTER_SELECTOR} from '../../support/constants'
+
 describe('Кнопка "Развернуть"', function() {
     before(function() {
-        cy.visit('http://localhost:3000/recursion');
+        cy.visit('recursion');
     });
 
     it('Кнопка недоступна при пустом поле ввода', function() {
@@ -12,7 +14,7 @@ describe('Кнопка "Развернуть"', function() {
 
   describe('Разворот строки', function() {
     before(function() {
-        cy.visit('http://localhost:3000/recursion');
+        cy.visit('recursion');
     });
 
     beforeEach(() => {
@@ -23,15 +25,15 @@ describe('Кнопка "Развернуть"', function() {
         cy.get('input').type('1234');                 
         cy.get('button[class*="text_type_button"]').click();
 
-        cy.get('p[class*="circle_letter"]').eq(0).as('letter1');
-        cy.get('p[class*="circle_letter"]').eq(1).as('letter2');
-        cy.get('p[class*="circle_letter"]').eq(2).as('letter3');
-        cy.get('p[class*="circle_letter"]').eq(3).as('letter4');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(0).as('letter1');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(1).as('letter2');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(2).as('letter3');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(3).as('letter4');
 
-        cy.get('div[class*="circle_circle"]').eq(0).as('circle1');
-        cy.get('div[class*="circle_circle"]').eq(1).as('circle2');
-        cy.get('div[class*="circle_circle"]').eq(2).as('circle3');
-        cy.get('div[class*="circle_circle"]').eq(3).as('circle4');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(0).as('circle1');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(1).as('circle2');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(2).as('circle3');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(3).as('circle4');
 
         cy.get('@letter1').should('have.text', '1');
         cy.get('@letter2').should('have.text', '2');

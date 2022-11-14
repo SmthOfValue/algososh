@@ -1,6 +1,8 @@
+import {CIRCLE_CIRCLE_SELECTOR, CIRCLE_LETTER_SELECTOR} from '../../support/constants'
+
 describe('Кнопка "Добавить"', function() {
     before(function() {
-        cy.visit('http://localhost:3000/stack');
+        cy.visit('stack');
     });
 
     it('Кнопка недоступна при пустом поле ввода', function() {
@@ -11,15 +13,15 @@ describe('Кнопка "Добавить"', function() {
 
 describe('Добавление элементов в стэк', function() {
     before(function() {
-        cy.visit('http://localhost:3000/stack');
+        cy.visit('stack');
     });
 
     it('Элементы добавляются корректно', function() {
         cy.get('input').type('1');            
         cy.contains("button", "Добавить").click();
 
-        cy.get('p[class*="circle_letter"]').eq(0).as('element1');
-        cy.get('div[class*="circle_circle"]').eq(0).as('circle1');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(0).as('element1');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(0).as('circle1');
 
         cy.get('@element1').should('have.text', '1');
         cy.get('@circle1').should('have.css', 'border', '4px solid rgb(210, 82, 225)')
@@ -31,8 +33,8 @@ describe('Добавление элементов в стэк', function() {
         cy.get('input').type('2');            
         cy.contains("button", "Добавить").click();
 
-        cy.get('p[class*="circle_letter"]').eq(1).as('element2');
-        cy.get('div[class*="circle_circle"]').eq(1).as('circle2');
+        cy.get(CIRCLE_LETTER_SELECTOR).eq(1).as('element2');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(1).as('circle2');
 
         cy.get('@element1').should('have.text', '1');
         cy.get('@circle1').should('have.css', 'border', '4px solid rgb(0, 50, 255)')
@@ -48,7 +50,7 @@ describe('Добавление элементов в стэк', function() {
 
 describe('Удаление элемента из стэка', function() {
     before(function() {
-        cy.visit('http://localhost:3000/stack');
+        cy.visit('stack');
     });
 
     it('Элемент удаляется корректно', function() {
@@ -67,7 +69,7 @@ describe('Удаление элемента из стэка', function() {
 
         cy.wait(600);
 
-        cy.get('div[class*="circle_circle"]').eq(2).as('circle3');
+        cy.get(CIRCLE_CIRCLE_SELECTOR).eq(2).as('circle3');
 
         cy.contains("button", "Удалить").click();
 
@@ -81,7 +83,7 @@ describe('Удаление элемента из стэка', function() {
 
 describe('Очистка стэка', function() {
     before(function() {
-        cy.visit('http://localhost:3000/stack');
+        cy.visit('stack');
     });
 
     it('Стэк очищается корректно', function() {
@@ -102,6 +104,6 @@ describe('Очистка стэка', function() {
 
         cy.contains("button", "Очистить").click();
 
-        cy.get('div[class*="solution-layout_contentCard"]').find('div[class*="circle_circle"]').should('have.length', 0)
+        cy.get('div[class*="solution-layout_contentCard"]').find(CIRCLE_CIRCLE_SELECTOR).should('have.length', 0)
     });
 }); 
